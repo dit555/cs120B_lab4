@@ -29,9 +29,9 @@ void Tick(){
 			else
 				state = Wait;
 			break;
-		case Inc: state = Wait; break;
-		case Dec: state = Wait; break;
-		case Reset: state = Wait; break;
+		case Inc: state = (temp == 0x01) ? Inc : Wait; break;
+		case Dec: state = (temp == 0x02) ? Dec : Wait; break;
+		case Reset: state = (temp == 0x03) ? Reset : Wait; break;
 		default: state = Start; break;
 
 	}

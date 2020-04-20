@@ -12,7 +12,7 @@
 #include "simAVRHeader.h"
 #endif
 
-enum State { Start, Wait, Inc, Dec, Reset} state;
+enum State { Start, Wait, Inc, Inc2, Dec, Dec2, Reset, Reset2} state;
 	
 void Tick(){
 	unsigned char temp = PINA;
@@ -29,9 +29,12 @@ void Tick(){
 			else
 				state = Wait;
 			break;
-		case Inc: state = (temp == 0x01) ? Inc : Wait; break;
-		case Dec: state = (temp == 0x02) ? Dec : Wait; break;
-		case Reset: state = (temp == 0x03) ? Reset : Wait; break;
+		case Inc: state = Inc2; break;
+		case Inc2: state = (temp == 0x01) ? Inc : Wait; break;
+		case Dec: state = Dec; break;
+		case Dec2: state = (temp == 0x02) ? Dec : Wait; break;
+		case Reset: state = Reset2; break;
+		case Reset2: state = (temp == 0x03) ? Reset : Wait; break;
 		default: state = Start; break;
 
 	}

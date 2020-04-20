@@ -24,6 +24,8 @@ void Tick(){
 			    	state = Locked;
 			else if (temp == 0x04)
 				state = Digit1;
+			else
+				state = Locked;
 			break;
 		case Digit1:
 		       	if ( temp == 0x00)

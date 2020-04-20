@@ -29,10 +29,10 @@ void Tick(){
 			else
 				state = Wait;
 			break;
-		case Inc: state = Inc2; break;
-		case Inc2: state = (temp == 0x01) ? Inc : Wait; break;
-		case Dec: state = Dec; break;
-		case Dec2: state = (temp == 0x02) ? Dec : Wait; break;
+		case Inc2: state = Wait; break;
+		case Inc: state = (temp == 0x01) ? Inc : Inc2; break;
+		case Dec2: state = Wait; break;
+		case Dec: state = (temp == 0x02) ? Dec : Dec2; break;
 		case Reset: state = Reset2; break;
 		case Reset2: state = (temp == 0x03) ? Reset : Wait; break;
 		default: state = Start; break;
@@ -42,8 +42,8 @@ void Tick(){
 	switch(state){
 		case Start: break;
 		case Wait: break;
-		case Dec: temp2--; break;
-		case Inc: temp2++; break;
+		case Dec2: if(temp != 0) temp2--; break;
+		case Inc2: if(temp != 9) temp2++; break;
 		case Reset: temp2 = 0x00; break;
 		default: break;
 

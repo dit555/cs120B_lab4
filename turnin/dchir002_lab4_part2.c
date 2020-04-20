@@ -22,11 +22,11 @@ void Tick(){
 		case Wait: 
 			if (temp == 0x01){
 			    	state = Inc;
-				if(temp != 9) temp2++;
+				if(temp2 != 9) temp2++;
 			}
 			else if (temp == 0x02){
 				state = Dec;
-				if(temp > 0) temp2--;
+				if(temp2 > 0) temp2--;
 			}
 			else if (temp == 0x03)
 				state = Reset;

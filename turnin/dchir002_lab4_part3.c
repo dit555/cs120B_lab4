@@ -36,6 +36,7 @@ void Tick(){
 			}
 			break;
 		case Unlock:
+			temp2 = 0x00;
 			if (temp == 0x80)
 				state = Locked;
 			else
@@ -49,7 +50,7 @@ void Tick(){
 		case Start: break;
 		case Locked: temp2 = 0x00; break;
 		case Digit1: break;
-		case Unlock: break;
+		case Unlock: temp2 = 0x01; break;
 		default: break;
 
 	}

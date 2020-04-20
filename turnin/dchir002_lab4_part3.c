@@ -20,6 +20,7 @@ void Tick(){
 	switch(state){ //transitions
 		case Start: state = Locked; break;
 		case Locked: 
+			
 			if (temp == 0x00 || temp == 0x80)
 			    	state = Locked;
 			else if (temp == 0x04)
@@ -28,6 +29,7 @@ void Tick(){
 				state = Locked;
 			break;
 		case Digit1:
+			PORTC = 0x02;
 		       	if ( temp == 0x00)
 			       state = Digit1;
 			else if (temp == 0x01 || temp == 0x04 || temp == 0x80)
@@ -38,7 +40,8 @@ void Tick(){
 			}
 			break;
 		case Unlock:
-			temp2 = 0x00;
+			PORTC = 0x03;
+			temp2 = 0x01;
 			if (temp == 0x80)
 				state = Locked;
 			else
@@ -62,7 +65,7 @@ void Tick(){
 int main(void) {
 	DDRA = 0x00; PORTA = 0x00;
 	DDRB = 0x00; PORTB = 0x00;
-		
+	DDRC = 0x00; PORTC = 0x00;	
     	while (1) {
 		Tick();
     	}

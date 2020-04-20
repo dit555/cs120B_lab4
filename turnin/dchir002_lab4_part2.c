@@ -26,7 +26,7 @@ void Tick(){
 			}
 			else if (temp == 0x02){
 				state = Dec;
-				if(temp != 0) temp2--;
+				if(temp > 0) temp2--;
 			}
 			else if (temp == 0x03)
 				state = Reset;
